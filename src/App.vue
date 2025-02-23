@@ -7,14 +7,16 @@ const appSettings = useSettingsStore()
 
 onMounted(() => {
   // setup global variables in settings store
-  appSettings.siteadmin = globalThis.spcontext.pageContext.legacyPageContext.isSiteAdmin
-  appSettings.fullcontrol = globalThis.hasManageWebPermissions
-  appSettings.displayname = globalThis.spcontext.pageContext.user.displayName
-  appSettings.loginname = globalThis.spcontext.pageContext.user.loginName
-  appSettings.instanceid = globalThis.spcontext.instanceId
-  appSettings.email = globalThis.spcontext.pageContext.user.email
-  appSettings.siteurl = globalThis.spcontext.pageContext.site.absoluteUrl
-  appSettings.weburl = globalThis.spcontext.pageContext.web.absoluteUrl
+  if (globalThis.spcontext !== undefined) {
+    appSettings.siteadmin = globalThis.spcontext.pageContext.legacyPageContext.isSiteAdmin
+    // appSettings.fullcontrol = globalThis.hasManageWebPermissions
+    appSettings.displayname = globalThis.spcontext.pageContext.user.displayName
+    appSettings.loginname = globalThis.spcontext.pageContext.user.loginName
+    appSettings.instanceid = globalThis.spcontext.instanceId
+    appSettings.email = globalThis.spcontext.pageContext.user.email
+    appSettings.siteurl = globalThis.spcontext.pageContext.site.absoluteUrl
+    appSettings.weburl = globalThis.spcontext.pageContext.web.absoluteUrl
+  }
 })
 </script>
 
